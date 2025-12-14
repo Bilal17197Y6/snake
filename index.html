@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Snake version nul</title>
+  <title>Snake — Jeu HTML</title>
   <style>
     :root{--bg:#0b1220;--panel:#071021;--accent:#77dd77;--muted:#98a0b3}
     *{box-sizing:border-box;font-family:Inter, Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial}
@@ -25,7 +25,7 @@
 <body>
   <div class="wrap">
     <div class="card">
-      <h1>Snak version nulL</h1>
+      <h1>Snake — Jeu HTML</h1>
       <canvas id="board" width="400" height="400"></canvas>
       <div class="controls">
         <button id="start">Démarrer</button>
@@ -33,7 +33,7 @@
         <button id="restart">Recommencer</button>
         <button id="turbo">Turbo</button>
       </div>
-      
+      <div class="hint">Contrôles: flèches / ZQSD (AZERTY) / W A S D</div>
     </div>
 
     <div class="card stats">
@@ -246,6 +246,7 @@ window.addEventListener('keydown', e => {
   }
 });
 
+// Buttons
 startBtn.addEventListener('click', ()=>{ startGame(); });
 pauseBtn.addEventListener('click', ()=>{ pauseGame(); });
 restartBtn.addEventListener('click', ()=>{ reset(); startGame(); });
@@ -267,7 +268,52 @@ canvas.addEventListener('touchend', e => {
 });
 function trySetDir(x,y){ if(allowTurn && !(x===-dir.x && y===-dir.y)){ dir={x,y}; allowTurn=false; }}
 
+// initialisation
 reset();
+// draw une première fois
 </script>
 </body>
+</html>
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Ultimate Game Stash — Snake & Geometry Dash</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: #071026; color: #fff; font-family: sans-serif; }
+        button { margin: 10px; padding: 10px 20px; font-size: 16px; border-radius: 6px; border: none; cursor: pointer; background: #77dd77; color: #000; }
+        iframe { border: none; width: 800px; height: 600px; margin-top: 20px; display: none; }
+    </style>
+</head>
+
+<body>
+    <h1>Ultimate Game Stash</h1>
+    <div>
+        <button id="playSnake">Jouer à Snake</button>
+        <button id="playGeoDash">Jouer à Geometry Dash</button>
+    </div>
+
+    <!-- Game Frames -->
+    <iframe id="snakeFrame" src=""></iframe>
+    <iframe id="geoFrame" src="https://rawcdn.githack.com/genizy/google-class/main/gdlite/index.html"></iframe>
+
+    <script>
+        const snakeFrame = document.getElementById('snakeFrame');
+        const geoFrame = document.getElementById('geoFrame');
+
+        document.getElementById('playSnake').addEventListener('click', () => {
+            snakeFrame.src = 'YOUR_SNAKE_GAME_URL_HERE'; // Remplace par l'URL où ton Snake est hébergé
+            snakeFrame.style.display = 'block';
+            geoFrame.style.display = 'none';
+        });
+
+        document.getElementById('playGeoDash').addEventListener('click', () => {
+            geoFrame.style.display = 'block';
+            snakeFrame.style.display = 'none';
+        });
+    </script>
+</body>
+
 </html>
