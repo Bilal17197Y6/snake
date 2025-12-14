@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Bilal le best</title>
+  <title>snake</title>
   <style>
-    :root{--bg:#0b1220;--panel:#071021;--accent:#77dd77;--muted:#98a0b3}
+    :root{--bg:#0b1220;--panel:#071021;--accent:#58a995;--muted:#98a0b3}
     *{box-sizing:border-box;font-family:Inter, Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial}
     body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#071026 0%, #05101a 100%);color:#e6eef8}
     .wrap{display:grid;grid-template-columns:420px 240px;gap:24px;align-items:start}
@@ -315,5 +315,88 @@ reset();
         });
     </script>
 </body>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choix du Device</title>
+<style>
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: linear-gradient(180deg,#071026 0%, #05101a 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+h1 { margin-bottom: 40px; }
+button {
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: #77dd77;
+    color: #000;
+}
+#games { display: none; margin-top: 20px; text-align: center; }
+iframe { width: 100%; max-width: 400px; height: 400px; margin-top: 20px; display: none; border: none; }
+</style>
+</head>
+<body>
+
+<h1>Choisis ton Device</h1>
+<div id="deviceChoice">
+    <button id="phoneBtn">Téléphone</button>
+    <button id="pcBtn">Ordinateur</button>
+</div>
+
+<div id="games">
+    <button id="playSnake">Jouer à Snake</button>
+    <button id="playGeoDash">Jouer à Geometry Dash</button>
+    <iframe id="snakeFrame" src=""></iframe>
+    <iframe id="geoFrame" src="https://rawcdn.githack.com/genizy/google-class/main/gdlite/index.html"></iframe>
+</div>
+
+<script>
+// Choix device
+const deviceChoice = document.getElementById('deviceChoice');
+const games = document.getElementById('games');
+
+document.getElementById('phoneBtn').addEventListener('click', () => {
+    deviceChoice.style.display = 'none';
+    games.style.display = 'block';
+    alert('Tu as choisi Téléphone !');
+});
+
+document.getElementById('pcBtn').addEventListener('click', () => {
+    deviceChoice.style.display = 'none';
+    games.style.display = 'block';
+    alert('Tu as choisi Ordinateur !');
+});
+
+// Boutons jeux
+const snakeFrame = document.getElementById('snakeFrame');
+const geoFrame = document.getElementById('geoFrame');
+
+document.getElementById('playSnake').addEventListener('click', () => {
+    snakeFrame.src = 'YOUR_SNAKE_GAME_URL_HERE'; // Remplace par ton URL de Snake
+    snakeFrame.style.display = 'block';
+    geoFrame.style.display = 'none';
+});
+
+document.getElementById('playGeoDash').addEventListener('click', () => {
+    geoFrame.style.display = 'block';
+    snakeFrame.style.display = 'none';
+});
+</script>
+
+</body>
+</html>
 
 </html>
