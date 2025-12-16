@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>snake</title>
   <style>
-    :root{--bg:#0b1220;--panel:#071021;--accent:#58a995;--muted:#98a0b3}
+    :root{--bg:#0b1220;--panel:#071021;--accent:#507e50;--muted:#98a0b3}
     *{box-sizing:border-box;font-family:Inter, Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial}
     body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#071026 0%, #05101a 100%);color:#e6eef8}
     .wrap{display:grid;grid-template-columns:420px 240px;gap:24px;align-items:start}
@@ -294,7 +294,7 @@ reset();
         <button id="playSnake">Jouer à Snake</button>
         <button id="playGeoDash">Jouer à Geometry Dash</button>
     </div>
-
+<title></title>
     <!-- Game Frames -->
     <iframe id="snakeFrame" src=""></iframe>
     <iframe id="geoFrame" src="https://rawcdn.githack.com/genizy/google-class/main/gdlite/index.html"></iframe>
@@ -319,84 +319,173 @@ reset();
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Choix du Device</title>
+<title>Page avec Musique PNL</title>
 <style>
 body {
     margin: 0;
-    font-family: sans-serif;
-    background: linear-gradient(180deg,#071026 0%, #05101a 100%);
-    color: #fff;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(180deg, #071026 0%, #05101a 100%);
+    color: white;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    align-items: center;
+    text-align: center;
 }
-h1 { margin-bottom: 40px; }
-button {
-    padding: 15px 30px;
-    margin: 10px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    background: #77dd77;
+
+#musicBtn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background: #ffcc00;
     color: #000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
-#games { display: none; margin-top: 20px; text-align: center; }
-iframe { width: 100%; max-width: 400px; height: 400px; margin-top: 20px; display: none; border: none; }
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2em;
+}
 </style>
 </head>
 <body>
 
-<h1>Choisis ton Device</h1>
-<div id="deviceChoice">
-    <button id="phoneBtn">Téléphone</button>
-    <button id="pcBtn">Ordinateur</button>
-</div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Page avec Musique</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(180deg, #071026 0%, #05101a 100%);
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+#musicBtn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background: #ffcc00;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+h1 { font-size: 2em; margin-bottom: 20px; }
+p { font-size: 1.2em; }
+</style>
+</head>
+<body>
 
-<div id="games">
-    <button id="playSnake">Jouer à Snake</button>
-    <button id="playGeoDash">Jouer à Geometry Dash</button>
-    <iframe id="snakeFrame" src=""></iframe>
-    <iframe id="geoFrame" src="https://rawcdn.githack.com/genizy/google-class/main/gdlite/index.html"></iframe>
-</div>
+<h1>Bienvenue !</h1>
+<p>Clique sur le bouton en haut à droite pour lancer ou couper la musique</p>
+
+<button id="musicBtn">🎵 Musique</button>
+
+<audio id="ambience" loop>
+    <source src="musique.mp3" type="https://www.youtube.com/watch?v=UGyzISxeed0">
+</audio>
 
 <script>
-// Choix device
-const deviceChoice = document.getElementById('deviceChoice');
-const games = document.getElementById('games');
+const musicBtn = document.getElementById('musicBtn');
+const ambience = document.getElementById('ambience');
+let isPlaying = false;
 
-document.getElementById('phoneBtn').addEventListener('click', () => {
-    deviceChoice.style.display = 'none';
-    games.style.display = 'block';
-    alert('Tu as choisi Téléphone !');
-});
-
-document.getElementById('pcBtn').addEventListener('click', () => {
-    deviceChoice.style.display = 'none';
-    games.style.display = 'block';
-    alert('Tu as choisi Ordinateur !');
-});
-
-// Boutons jeux
-const snakeFrame = document.getElementById('snakeFrame');
-const geoFrame = document.getElementById('geoFrame');
-
-document.getElementById('playSnake').addEventListener('click', () => {
-    snakeFrame.src = 'YOUR_SNAKE_GAME_URL_HERE'; // Remplace par ton URL de Snake
-    snakeFrame.style.display = 'block';
-    geoFrame.style.display = 'none';
-});
-
-document.getElementById('playGeoDash').addEventListener('click', () => {
-    geoFrame.style.display = 'block';
-    snakeFrame.style.display = 'none';
+musicBtn.addEventListener('click', () => {
+    if(!isPlaying){
+        ambience.play().catch(e => {
+            console.log("Lecture bloquée par le navigateur", e);
+        });
+        musicBtn.textContent = "🔇 Couper Musique";
+    } else {
+        ambience.pause();
+        musicBtn.textContent = "🎵 Musique";
+    }
+    isPlaying = !isPlaying;
 });
 </script>
 
 </body>
 </html>
 
+</script>
+
+</body>
 </html>
+
+</script>
+
+</html>
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Geometry Dash Fullscreen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+  <style>
+    /* Plein écran total */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: black;
+    }
+
+    iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Geometry Dash lancé automatiquement en plein écran -->
+  <iframe
+    id="geoFrame"
+    src="https://rawcdn.githack.com/genizy/google-class/main/gdlite/index.html"
+    allowfullscreen
+    allow="fullscreen; autoplay; gamepad">
+  </iframe>
+
+  <script>
+    // Forcer l'affichage direct (aucun bouton, aucun menu)
+    geoFrame.style.display = 'block';
+
+    // Optionnel : tenter le vrai fullscreen après interaction utilisateur
+    document.addEventListener('click', () => {
+      if (geoFrame.requestFullscreen) {
+        geoFrame.requestFullscreen().catch(()=>{});
+      }
+    }, { once: true });
+  </script>
+
+</body>
+</html>
+```
